@@ -1,0 +1,72 @@
+# -----------------------
+# macOS system files
+# -----------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# -----------------------
+# ESP32 / ESP-IDF
+# -----------------------
+build/
+sdkconfig
+sdkconfig.old
+*.bin
+*.elf
+*.map
+*.log
+*.a
+*.o
+*.d
+*.pioenvs/
+.cmake/
+CMakeLists.txt.user
+*.xcworkspace/
+*.xcodeproj/
+*.xcodeproj/project.xcworkspace/
+
+# -----------------------
+# Python
+# -----------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pycache/
+*.pdb
+*.egg-info/
+dist/
+build/
+.eggs/
+.env/
+.venv/
+venv/
+pip-wheel-metadata/
+*.egg
+*.pytest_cache/
+.mypy_cache/
+.pytest_cache/
+*.pylint.d/
+
+# -----------------------
+# IDE files (VSCode, CLion, PyCharm, etc.)
+# -----------------------
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# -----------------------
+# Logs and temporary files
+# -----------------------
+*.log
+*.tmp
+*.swp
+*.swo
