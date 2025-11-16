@@ -17,8 +17,8 @@ typedef struct driver_t driver_t;
 typedef struct {
     esp_err_t (*init)(driver_t *driver);
     esp_err_t (*destruct)(driver_t *driver);
-    esp_err_t (*read)(driver_t *driver, uint8_t *data, size_t len);
-    esp_err_t (*write)(driver_t *driver, const uint8_t *data, size_t len);
+    esp_err_t (*read)(driver_t *driver, void* data, size_t len);
+    esp_err_t (*write)(driver_t *driver, const void* data, size_t len);
 } driver_operations_t;
 
 struct driver_t {
@@ -60,8 +60,8 @@ extern driver_count_ty driver_count;
 #define DEFINE_DRIVER_REGISTER(ID, TAG_NAME, BUS_PTR, INIT_FN, DESTRUCT_FN, READ_FN, WRITE_FN) \
     static esp_err_t INIT_FN(driver_t *driver);                                                \
     static esp_err_t DESTRUCT_FN(driver_t *driver);                                            \
-    static esp_err_t READ_FN(driver_t *driver, uint8_t *data, size_t len);                     \
-    static esp_err_t WRITE_FN(driver_t *driver, const uint8_t *data, size_t len);              \
+    static esp_err_t READ_FN(driver_t *driver, void *data, size_t len);                        \
+    static esp_err_t WRITE_FN(driver_t *driver, const void *data, size_t len);                 \
                                                                                                \
     static driver_operations_t TAG_NAME##_ops = {                                              \
         .init = INIT_FN,                                                                       \

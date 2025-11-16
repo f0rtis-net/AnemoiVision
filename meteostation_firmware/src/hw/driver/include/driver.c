@@ -40,5 +40,6 @@ esp_err_t get_driver_by_id(driver_id id, driver_t **driver) {
     }
 
     *driver = driver_table[id].driver;
+
     return ESP_OK;
 }

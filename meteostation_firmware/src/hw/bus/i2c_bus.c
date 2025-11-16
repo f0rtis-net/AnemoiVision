@@ -4,8 +4,8 @@
 
 #define I2C_BUS_ID        0x0
 #define I2C_MASTER_NUM    I2C_NUM_0
-#define I2C_MASTER_SDA_IO GPIO_NUM_4
-#define I2C_MASTER_SCL_IO GPIO_NUM_3
+#define I2C_MASTER_SDA_IO GPIO_NUM_7
+#define I2C_MASTER_SCL_IO GPIO_NUM_6
 
 static const char *TAG = "I2C_BUS";
 

@@ -6,37 +6,28 @@
 #include "sdkconfig.h"
 #include "hw/bus/include/bus.h"
 #include "hw/driver/include/driver.h"
-
+#include "hw/driver/bme280/bme_280.h"
 static const char *TAG = "example";
-
-#define BLINK_GPIO 13
-
-static uint8_t s_led_state = 0;
-
-static void blink_led(void)
-{
-    gpio_set_level(BLINK_GPIO, s_led_state);
-}
-
-static void configure_led(void)
-{
-    ESP_LOGI(TAG, "Example configured to blink GPIO LED!");
-    gpio_reset_pin(BLINK_GPIO);
-    gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
-}
 
 void app_main(void)
 {
     init_buses();
     init_drivers();
 
-    configure_led();
-
     while (1) {
-        //ESP_LOGI(TAG, "Turning the LED %s!", s_led_state == true ? "ON" : "OFF");
-        blink_led();
+        bme280_data_t data;
 
-        s_led_state = !s_led_state;
-        vTaskDelay(100 / portTICK_PERIOD_MS);
+        esp_err_t err = bme280_read_data(&data);
+
+        if (err != ESP_OK) {
+            ESP_LOGE(TAG, "error: %s", esp_err_to_name(err));
+            break;
+        }
+
+        ESP_LOGI(TAG, "temp: %f", data.temp);
+        ESP_LOGI(TAG, "hum: %f", data.humidity);
+        ESP_LOGI(TAG, "pressure: %f", data.pressure);
+
+        vTaskDelay(pdTICKS_TO_MS(100));
     }
 }
